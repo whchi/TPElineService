@@ -14,7 +14,7 @@ window.addEventListener("load", function(e) {
                         enable: false,
                     },
                     center: {
-                        text: "空氣品質資訊服務",
+                        text: "空氣盒子資訊服務",
                         clickable: false
                     },
                 }
