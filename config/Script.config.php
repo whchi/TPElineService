@@ -5,6 +5,7 @@
 global $fetcherInterval, $uriConfig, $eocDisasterCasecate, $taiwanGeocodeTpe;
 if (!defined('DISPLAY_DATASET_PATH')) define('DISPLAY_DATASET_PATH', '/files/displayDataset/');
 if (!defined('PUSH_DATASET_PATH')) define('PUSH_DATASET_PATH', '/files/pushDataset/');
+if (!defined('EXPIRED_DATASET_PATH')) define('EXPIRED_DATASET_PATH', '/files/expiredDataset/');
 if (!defined('PHP_PATH')) define('PHP_PATH', '/path/to/php');
 if (!defined('SCRIPT_PATH')) define('SCRIPT_PATH', '/path/to/script');
 // self define in minute
