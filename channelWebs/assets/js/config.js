@@ -5,7 +5,7 @@ var AUTH_TOKEN = '',
         'ncdr_flood': '淹水警示',
         'ncdr_watergate': '水閘門啟閉',
         'ncdr_parking': '紅黃線停車',
-        'airbox': '空氣品質'
+        'airbox': '空氣盒子'
     },
     TAIWAN_POSTWITHGEO_CODE_TPE = {
         '100': { '6300500': '中正區' },

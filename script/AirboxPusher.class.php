@@ -196,10 +196,10 @@ class AirboxPusher
         $j = 0;
         foreach ($midInfo as $area => $midDetail) {
             for ($i = 0; $i < $midDetail['midChunk']; $i++) {
-                $message = '空氣品質資訊:' . PHP_EOL;
+                $message = '空氣盒子資訊:' . PHP_EOL;
                 foreach ($msg['result'] as $key => $info) {
                     if ($area === $key && isset($info[0]['deviceDist'])) {
-                        $message .= '【' . $info[0]['deviceDist'] . '】' . PHP_EOL . '各監測點空氣品質情形如下:';
+                        $message .= '【' . $info[0]['deviceDist'] . '】' . PHP_EOL . '各監測點空氣盒子情形如下:';
                         foreach ($info as $airInfo) {
                             if ($airInfo['pm25'] < 71) {
                                 $message .= PHP_EOL . $airInfo['deviceName'] . 'PM2.5濃度: ' . $airInfo['pm25'] . '(' . $this->pm25toStr($airInfo['pm25']) . ')';

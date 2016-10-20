@@ -21,7 +21,7 @@ endif;
 <body>
     <div id="wrapper">
         <div id="main">
-            <div id="subc__desc"><span class="subc__support">按下「行政區」，即可查詢各區域空氣品質指標。</span></div>
+            <div id="subc__desc"><span class="subc__support">按下「行政區」，即可查詢各區域空氣盒子指標。</span></div>
             <div id="content">
                 <div id="subc__btnblock">
                     <button class="areaBtn" value="6300500" onclick="showAirboxInfo(this);" data-postcode="100">中正區</button>

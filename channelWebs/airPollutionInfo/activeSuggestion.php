@@ -28,7 +28,7 @@ endif;
                         enable: true,
                     },
                     center: {
-                        text: "空氣品質指標與活動建議",
+                        text: "空氣盒子指標與活動建議",
                         clickable: false
                     },
                 }

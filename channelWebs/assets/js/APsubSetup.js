@@ -12,7 +12,7 @@ window.addEventListener("load", function(e) {
                     enable: true,
                 },
                 center: {
-                    text: "空氣品質資訊訂閱設定",
+                    text: "空氣盒子資訊訂閱設定",
                     clickable: false
                 },
             }
@@ -45,7 +45,7 @@ window.addEventListener("load", function(e) {
 
 function setupAirbox(mid, postCode, areaCode, action) {
     var desc = document.getElementById('subc__desc');
-    desc.innerHTML = '<span class="subc__support">' + '設定【' + getGeocodeName(TAIWAN_POSTWITHGEO_CODE_TPE[postCode]) + '】的空氣品質資訊推播頻率</span>';
+    desc.innerHTML = '<span class="subc__support">' + '設定【' + getGeocodeName(TAIWAN_POSTWITHGEO_CODE_TPE[postCode]) + '】的空氣盒子資訊推播頻率</span>';
     switch (action) {
         case 'addAirboxSubArea':
             var checkBoxes = document.querySelectorAll('.aircheck'),
@@ -101,7 +101,7 @@ function setupAirbox(mid, postCode, areaCode, action) {
             break;
         default:
             // add new sub
-            desc.innerHTML = '<span class="subc__support">' + '設定【' + getGeocodeName(TAIWAN_POSTWITHGEO_CODE_TPE[postCode]) + '】的空氣品質資訊推播頻率</span>';
+            desc.innerHTML = '<span class="subc__support">' + '設定【' + getGeocodeName(TAIWAN_POSTWITHGEO_CODE_TPE[postCode]) + '】的空氣盒子資訊推播頻率</span>';
             var checkBoxes = document.querySelectorAll('.aircheck'),
                 sbtn = document.getElementById('submitAirboxSubInfo');
             sbtn.value = areaCode;

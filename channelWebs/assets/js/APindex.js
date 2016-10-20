@@ -76,7 +76,7 @@ function showAirboxInfo(sel) {
             if (typeof dist['result'][0] === 'undefined') {
                 airinfo.innerHTML += '<span style="font-size:20px;margin-bottom:10px;display:block;">本區域尚無資料</span>';
             } else {
-                airinfo.innerHTML += '<span style="font-size:20px;margin-bottom:10px;display:block;">各監測點空氣品質如下:</span>';
+                airinfo.innerHTML += '<span style="font-size:20px;margin-bottom:10px;display:block;">各監測點空氣盒子如下:</span>';
                 var le = document.createElement('br');
                 for (var i in dist['result']) {
                     var infoPerLine = document.createElement('span');
@@ -138,7 +138,7 @@ function checkIsSubscribed(sel, airinfoblock) {
     }).done(function(data) {
         var editbtn = document.createElement('button'),
             cancelbtn = document.createElement('button');
-        editbtn.innerHTML = '訂閱/修改' + sel.innerHTML + '空氣品質資訊';
+        editbtn.innerHTML = '訂閱/修改' + sel.innerHTML + '空氣盒子資訊';
         editbtn.className = 'sbtn--want';
         editbtn.setAttribute('data-mid', sel.dataset.mid);
         editbtn.setAttribute('data-postcode', sel.dataset.postcode);
@@ -152,7 +152,7 @@ function checkIsSubscribed(sel, airinfoblock) {
                 editbtn.setAttribute('onclick', 'gotoSetupPage(this, \'updateAirboxSubArea\')');
                 airinfoblock.appendChild(editbtn);
                 airinfoblock.appendChild(document.createElement('br'));
-                cancelbtn.innerHTML = '取消訂閱' + sel.innerHTML + '空氣品質資訊';
+                cancelbtn.innerHTML = '取消訂閱' + sel.innerHTML + '空氣盒子資訊';
                 cancelbtn.value = sel.value;
                 cancelbtn.className = 'sbtn--cancel';
                 cancelbtn.setAttribute('data-mid', sel.dataset.mid);

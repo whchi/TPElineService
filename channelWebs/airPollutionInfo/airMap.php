@@ -33,7 +33,7 @@ endif;
                         enable: true,
                     },
                     center: {
-                        text: '【'+getGeocodeName(TAIWAN_POSTWITHGEO_CODE_TPE[getURIQueryString('ptc')]) + '】空氣品質地圖',
+                        text: '【'+getGeocodeName(TAIWAN_POSTWITHGEO_CODE_TPE[getURIQueryString('ptc')]) + '】空氣盒子地圖',
                         clickable: false
                     },
                 }
