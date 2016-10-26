@@ -3,13 +3,13 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- 導出 youtdbname 的資料庫結構
-DROP DATABASE IF EXISTS `youtdbname`;
-CREATE DATABASE IF NOT EXISTS `youtdbname` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `youtdbname`;
+-- 導出 yourdbname 的資料庫結構
+DROP DATABASE IF EXISTS `yourdbname`;
+CREATE DATABASE IF NOT EXISTS `yourdbname` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `yourdbname`;
 
 
--- 導出  表 youtdbname.dataset_to_display 結構
+-- 導出  表 yourdbname.dataset_to_display 結構
 DROP TABLE IF EXISTS `dataset_to_display`;
 CREATE TABLE IF NOT EXISTS `dataset_to_display` (
   `id` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '資料集編號',
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `dataset_to_display` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 youtdbname.dataset_to_push 結構
+-- 導出  表 yourdbname.dataset_to_push 結構
 DROP TABLE IF EXISTS `dataset_to_push`;
 CREATE TABLE IF NOT EXISTS `dataset_to_push` (
   `id` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '資料集編號',
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dataset_to_push` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 youtdbname.member 結構
+-- 導出  表 yourdbname.member 結構
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
   `mid` varchar(40) COLLATE utf8_unicode_ci NOT NULL COMMENT 'pk',
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 youtdbname.message 結構
+-- 導出  表 yourdbname.message 結構
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `msg_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT 'pk',
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 youtdbname.subscription_container 結構
+-- 導出  表 yourdbname.subscription_container 結構
 DROP TABLE IF EXISTS `subscription_container`;
 CREATE TABLE IF NOT EXISTS `subscription_container` (
   `mid` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
