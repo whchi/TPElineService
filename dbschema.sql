@@ -10,13 +10,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- 導出 linebot 的資料庫結構
-DROP DATABASE IF EXISTS `linebot`;
-CREATE DATABASE IF NOT EXISTS `linebot` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `linebot`;
+-- 導出 yourdbname 的資料庫結構
+CREATE DATABASE IF NOT EXISTS `yourdbname` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `yourdbname`;
 
 
--- 導出  表 linebot.dataset_to_display 結構
+-- 導出  表 yourdbname.dataset_to_display 結構
 DROP TABLE IF EXISTS `dataset_to_display`;
 CREATE TABLE IF NOT EXISTS `dataset_to_display` (
   `id` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '資料集編號',
@@ -29,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `dataset_to_display` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 linebot.dataset_to_push 結構
+-- 導出  表 yourdbname.dataset_to_push 結構
 DROP TABLE IF EXISTS `dataset_to_push`;
 CREATE TABLE IF NOT EXISTS `dataset_to_push` (
   `id` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '資料集編號',
@@ -42,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `dataset_to_push` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 linebot.line_service_token 結構
+-- 導出  表 yourdbname.line_service_token 結構
 DROP TABLE IF EXISTS `line_service_token`;
 CREATE TABLE IF NOT EXISTS `line_service_token` (
   `access_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -54,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `line_service_token` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 linebot.member 結構
+-- 導出  表 yourdbname.member 結構
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE IF NOT EXISTS `member` (
   `mid` varchar(40) COLLATE utf8_unicode_ci NOT NULL COMMENT 'pk',
@@ -66,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 linebot.message 結構
+-- 導出  表 yourdbname.message 結構
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `msg_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT 'pk',
@@ -81,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `message` (
 -- 資料導出被取消選擇。
 
 
--- 導出  表 linebot.subscription_container 結構
+-- 導出  表 yourdbname.subscription_container 結構
 DROP TABLE IF EXISTS `subscription_container`;
 CREATE TABLE IF NOT EXISTS `subscription_container` (
   `mid` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
