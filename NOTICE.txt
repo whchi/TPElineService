@@ -1,4 +1,4 @@
 TPE LINE Service
 This service includes library developed by LINE(https://line.me).
 
-portion of this service includes library developed by the MobileDetect team(http://mobiledetect.net/)
+Portion of this service includes library developed by the MobileDetect(http://mobiledetect.net/) team.
