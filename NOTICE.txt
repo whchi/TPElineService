@@ -1,5 +1,3 @@
-Apache HTTP Server
-Copyright 2016 The Apache Software Foundation.
+This service includes library developed by LINE(https://line.me).
 
-This product includes software developed at
-The Apache Software Foundation (http://www.apache.org/).
+portion of this service includes library developed by the MobileDetect team(http://mobiledetect.net/)
