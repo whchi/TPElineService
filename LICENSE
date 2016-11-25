@@ -67,13 +67,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-=========================================================
-LINE JavaScript-sdk
-LICENSE
-http://terms2.line.me/LINE_Developers_Agreement
-=========================================================
-MobileDetect
-LICENSE
+===================================================
+第三方程式元件
+===================================================
+[LINE JavaScript-sdk]
+
+    http://terms2.line.me/LINE_Developers_Agreement
+
+- - -
+[MobileDetect]
+
 MIT License
 
 Copyright (c) <2011-2015> Serban Ghita, Nick Ilyin and contributors.
@@ -122,4 +125,3 @@ By making a contribution to this project, I certify that:
     personal information I submit with it, including my sign-off) is
     maintained indefinitely and may be redistributed consistent with
     this project or the open source license(s) involved.
-
