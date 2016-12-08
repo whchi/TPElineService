@@ -44,4 +44,4 @@
 	4-2.	依照config資料夾內的說明將各變數定義補上後即可執行
 5. 授權
 
-	詳細請見[LICENSE](LICENSE)檔案
+	詳細請見[LICENSE](LICENSE)與[NOTICE](https://github.com/whchi/TPElineService/blob/master/NOTICE.txt)檔案
