@@ -1,4 +1,6 @@
 TPE LINE Service
 This service includes library developed by LINE(https://line.me).
+License: http://terms2.line.me/LINE_Developers_Agreement
 
 Portion of this service includes library developed by the MobileDetect(http://mobiledetect.net/) team.
+License: https://github.com/whchi/TPElineService/blob/master/libs/mobileDetect/LICENSE.txt
