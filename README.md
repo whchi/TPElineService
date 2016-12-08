@@ -44,4 +44,4 @@
 	4-2.	依照config資料夾內的說明將各變數定義補上後即可執行
 5. 授權
 
-	臺北市政府LINE服務原始碼碼使用 Apache 2.0 授權條款，其中包含之第三方程式元件則遵循其原有之開放授權方式。詳細請見[LICENSE](LICENSE)與[NOTICE](https://github.com/whchi/TPElineService/blob/master/NOTICE.txt)檔案
+	臺北市政府LINE服務原始碼使用 Apache 2.0 授權條款，其中包含之第三方程式元件則遵循其原有之開放授權方式。詳細請見[LICENSE](LICENSE)與[NOTICE](https://github.com/whchi/TPElineService/blob/master/NOTICE.txt)檔案
