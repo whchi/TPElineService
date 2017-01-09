@@ -9,7 +9,7 @@ class AirboxPusher
     /**
      * @var mixed
      */
-    private $purpleData, $airboxData, $dataToPush, $currentTimestamp;
+    private $alertData, $airboxData, $dataToPush, $currentTimestamp;
 
     /**
      * @var mixed
@@ -27,7 +27,7 @@ class AirboxPusher
      */
     public function getAirboxDataToPush()
     {
-        $jsonData = $this->airboxData = $this->purpleData = [];
+        $jsonData = $this->airboxData = $this->alertData = [];
         $query = "SELECT * FROM `dataset_to_push` WHERE id = 'airbox'";
         $this->dbObj->prepareQuery($query);
         $rst = $this->dbObj->getQuery();
@@ -48,18 +48,18 @@ class AirboxPusher
             }
             $j = 0;
             foreach ($abd as $airboxDetail) {
-                if ($airboxDetail['pm25'] > 71) {
-                    $this->purpleData['result'][$k][$j] = $airboxDetail;
+                if ($airboxDetail['pm25'] > 54.4) {
+                    $this->alertData['result'][$k][$j] = $airboxDetail;
                     $j++;
                 }
             }
         }
-        if (!empty($this->purpleData['result'])) {
-            $this->origData = $this->purpleData;
-            $this->origData['purple'] = true;
+        if (!empty($this->alertData['result'])) {
+            $this->origData = $this->alertData;
+            $this->origData['alert'] = true;
         } else {
             $this->origData = $this->airboxData;
-            $this->origData['purple'] = false;
+            $this->origData['alert'] = false;
         }
         if (!empty($this->origData)) {
             // return only those with pm25
@@ -80,7 +80,7 @@ class AirboxPusher
                   WHERE `is_pushed` = 0
                   AND `dataset_id` = 'airbox'
                   AND `detail` LIKE :detail";
-        if ($this->origData['purple']) {
+        if ($this->origData['alert']) {
             // purple
             // get lasted_pushed_at > 1 hour to push
             $query .= " AND (" . $this->currentTimestamp . " - IF(UNIX_TIMESTAMP(`last_pushed_at`) IS NULL, UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 2 HOUR)), UNIX_TIMESTAMP(`last_pushed_at`))) /60 /60 > 1;";
@@ -106,7 +106,7 @@ class AirboxPusher
             }
         }
         // setup data to push
-        $currentTime = ($this->origData['purple']) ? '' : $currentTime;
+        $currentTime = ($this->origData['alert']) ? '' : $currentTime;
         $this->setupDataToPush($this->origData, $detail, $currentTime);
         $this->pushableMemberList = array_unique($this->pushableMemberList);
         return $this->pushableMemberList;
@@ -131,7 +131,7 @@ class AirboxPusher
             $isSuccess = json_decode($rst['result'], true);
             if (isset($isSuccess['failed']) && empty($isSuccess['failed'])) {
                 $membersToModify = $this->formatSendToListToDB($rst['midList']);
-                switch ($msg['purple']) {
+                switch ($msg['alert']) {
                     case true:
                         $this->changeLastPushedTime($membersToModify);
                         break;
@@ -201,10 +201,10 @@ class AirboxPusher
                     if ($area === $key && isset($info[0]['deviceDist'])) {
                         $message .= '【' . $info[0]['deviceDist'] . '】' . PHP_EOL . '各監測點空氣盒子情形如下:';
                         foreach ($info as $airInfo) {
-                            if ($airInfo['pm25'] < 71) {
+                            if ($airInfo['pm25'] < 54.4) {
                                 $message .= PHP_EOL . $airInfo['deviceName'] . 'PM2.5濃度: ' . $airInfo['pm25'] . '(' . $this->pm25toStr($airInfo['pm25']) . ')';
                             } else {
-                                $message .= PHP_EOL . $airInfo['deviceName'] . 'PM2.5濃度: ' . $airInfo['pm25'] . '(已達紫爆等級，建議民眾不要於該區域逗留)';
+                                $message .= PHP_EOL . $airInfo['deviceName'] . 'PM2.5濃度: ' . $airInfo['pm25'] . '(已達紅害等級，建議民眾不要於該區域逗留)';
                             }
                         }
                     }
