@@ -96,20 +96,28 @@ endif;
         display: block;
     }
     
-    .pm25--low {
-        background-color: #dff0d8;
+    .pm25--good {
+        background-color: #ccf0a8;
     }
     
-    .pm25--medium {
+    .pm25--moderate {
         background-color: #ffe988;
     }
     
-    .pm25--high {
+    .pm25--uhfors {
+        background-color: #ffae00;
+    }
+    
+    .pm25--uh {
         background-color: #ff8686;
     }
     
-    .pm25--veryhigh {
+    .pm25--vuh {
         background-color: #de8bf5;
+    }
+    
+    .pm25--hazardous {
+        background-color: #c75032;
     }
     
     .back {
@@ -131,13 +139,22 @@ endif;
         left: 2px;
         top: 4px;
     }
+    
+    header.tophead {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
     </style>
 </head>
 
 <body>
     <div id="wrapper">
+        <header class="tophead">
+            以下數據為PM2.5濃度，區別標準參考<a href="http://taqm.epa.gov.tw/taqm/tw/b0201.aspx">行政院環保署公布之最新AQI標準</a>
+        </header>
         <div class="suggest--desc">
-            <span class="pm25--desc pm25--low">低 (<36) </span>
+            <span class="pm25--desc pm25--good">良好 (<15.4) </span>
             <div class="suggest--content">
                 <header class="active-suggest--header">一般民眾活動建議:</header>
                 <p class="active-suggest--content">正常戶外活動。</p>
@@ -146,40 +163,73 @@ endif;
             </div>
         </div>
         <div class="suggest--desc">
-            <span class="pm25--desc pm25--medium">中 (36~54)</span>
+            <span class="pm25--desc pm25--moderate">普通 (15.5~35.4)</span>
             <div class="suggest--content">
                 <header class="active-suggest--header">一般民眾活動建議:</header>
                 <p class="active-suggest--content">正常戶外活動。</p>
                 <header class="active-suggest--header">敏感性族群活動建議:</header>
                 <p class="active-suggest--content">
-                    有心臟、呼吸道及心血管疾病的成人與孩童感受到癥狀時，應考慮減少體力消耗，特別是減少戶外活動。
+                    極特殊敏感族群建議注意可能產生的咳嗽或呼吸急促症狀，但仍可正常戶外活動。
                 </p>
             </div>
         </div>
         <div class="suggest--desc">
-            <span class="pm25--desc pm25--high">高 (54~71)</span>
+            <span class="pm25--desc pm25--uhfors">對敏感組群不健康 (35.4~54.4)</span>
             <div class="suggest--content">
                 <header class="active-suggest--header">一般民眾活動建議:</header>
-                <p class="active-suggest--content">任何人如果有不適，如眼痛，咳嗽或喉嚨痛等，應該考慮減少戶外活動。</p>
+                <p class="active-suggest--content">
+                    1.一般民眾如果有不適，如眼痛，咳嗽或喉嚨痛等，應該考慮減少戶外活動。
+                    <br>2.學生仍可進行戶外活動，但建議減少長時間劇烈運動。
+                </p>
                 <header class="active-suggest--header">敏感性族群活動建議:</header>
                 <p class="active-suggest--content">
-                    1. 有心臟、呼吸道及心血管疾病的成人與孩童，應減少體力消耗，特別是減少戶外活動。
-                    <br>2. 老年人應減少體力消耗。
-                    <br>3. 具有氣喘的人可能需增加使用吸入劑的頻率。
+                    1.有心臟、呼吸道及心血管疾病患者、孩童及老年人，建議減少體力消耗活動及戶外活動，必要外出應配戴口罩。
+                    <br>2.具有氣喘的人可能需增加使用吸入劑的頻率。
                 </p>
             </div>
         </div>
         <div class="suggest--desc">
-            <span class="pm25--desc pm25--veryhigh">非常高 (>71)</span>
+            <span class="pm25--desc pm25--uh">對所有族群不健康 (54.5~150.4)</span>
             <div class="suggest--content">
                 <header class="active-suggest--header">一般民眾活動建議:</header>
                 <p class="active-suggest--content">
-                    任何人如果有不適，如眼痛，咳嗽或喉嚨痛等，應減少體力消耗，特別是減少戶外活動。
+                    1.一般民眾如果有不適，如眼痛，咳嗽或喉嚨痛等，應減少體力消耗，特別是減少戶外活動。
+                    <br>2.學生應避免長時間劇烈運動，進行其他戶外活動時應增加休息時間。
                 </p>
                 <header class="active-suggest--header">敏感性族群活動建議:</header>
                 <p class="active-suggest--content">
-                    1. 有心臟、呼吸道及心血管疾病的成人與孩童，以及老年人應避免體力消耗，特別是避免戶外活動。
-                    <br>2. 具有氣喘的人可能需增加使用吸入劑的頻率。
+                    1.有心臟、呼吸道及心血管疾病患者、孩童及老年人，建議留在室內並減少體力消耗活動，必要外出應配戴口罩。
+                    <br>2.具有氣喘的人可能需增加使用吸入劑的頻率。
+                </p>
+            </div>
+        </div>
+        <div class="suggest--desc">
+            <span class="pm25--desc pm25--vuh">非常不健康 (150.5~250.4)</span>
+            <div class="suggest--content">
+                <header class="active-suggest--header">一般民眾活動建議:</header>
+                <p class="active-suggest--content">
+                    1.一般民眾應減少戶外活動。
+                    <br>2.學生應立即停止戶外活動，並將課程調整於室內進行。
+                </p>
+                <header class="active-suggest--header">敏感性族群活動建議:</header>
+                <p class="active-suggest--content">
+                    1.有心臟、呼吸道及心血管疾病患者、孩童及老年人應留在室內並減少體力消耗活動，必要外出應配戴口罩。
+                    <br>2.具有氣喘的人應增加使用吸入劑的頻率。
+                </p>
+            </div>
+        </div>
+        <div class="suggest--desc">
+            <span class="pm25--desc pm25--hazardous">危害 (>250.4)</span>
+            <div class="suggest--content">
+                <header class="active-suggest--header">一般民眾活動建議:</header>
+                <p class="active-suggest--content">
+                    1.一般民眾應避免戶外活動，室內應緊閉門窗，必要外出應配戴口罩等防護用具。
+                    <br>2.學生應立即停止戶外活動，並將課程調整於室內進行。
+                </p>
+                <header class="active-suggest--header">敏感性族群活動建議:</header>
+                <p class="active-suggest--content">
+                    1.有心臟、呼吸道及心血管疾病患者、孩童及老年人應留在室內並避免體力消耗活動，必要外出應配戴口罩。
+                    <br>2.具有氣喘的人應增加使用吸入劑的頻率。
                 </p>
             </div>
         </div>

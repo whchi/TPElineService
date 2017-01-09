@@ -203,3 +203,8 @@ table tr {
 .aircheck:checked+ .isChecked {
     background-color: #98D1D9;
 }
+
+span.pm25desc {
+    text-shadow: -1px 0 rgba(0, 0, 0, 0.3), 0 1px rgba(0, 0, 0, 0.3), 1px 0 rgba(0, 0, 0, 0.3), 0 -1px rgba(0, 0, 0, 0.3);
+    font-size: 26px;
+}

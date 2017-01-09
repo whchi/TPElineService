@@ -193,29 +193,6 @@ endif;
             });
         });
     }
-
-    function pm25Color(pm25) {
-        if (pm25 < 36) {
-            return '#6ffb35';
-        } else if (pm25 >= 36 && pm25 < 54) {
-            return '#f9fd04';
-        } else if (pm25 >= 54 && pm25 < 71) {
-            return '#ff8686';
-        } else {
-            return '#de8bf5';
-        }
-    }
-    function pm25Str(pm25) {
-        if (pm25 < 36) {
-            return '低';
-        } else if (pm25 >= 36 && pm25 < 54) {
-            return '中';
-        } else if (pm25 >= 54 && pm25 < 71) {
-            return '高';
-        } else {
-            return '非常高';
-        }
-    }
     </script>
     <style>
     #map {

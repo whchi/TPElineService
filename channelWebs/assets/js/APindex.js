@@ -82,8 +82,11 @@ function showAirboxInfo(sel) {
                     var infoPerLine = document.createElement('span');
                     infoPerLine.style.display = 'block';
                     if (typeof dist['result'][i]['pm25'] !== 'undefined') {
-                        var infoText = document.createTextNode(dist['result'][i]['deviceName'] + ' PM2.5濃度 : ' + dist['result'][i]['pm25'] + '(' + pm25toStr(dist['result'][i]['pm25']) + ')');
-                        infoPerLine.appendChild(infoText);
+                        var infoText = dist['result'][i]['deviceName'] +
+                            ' PM2.5濃度 : <span class="pm25desc" style="color:' +
+                            pm25Color(dist['result'][i]['pm25']) + '">' +
+                            dist['result'][i]['pm25'] + '</span>';
+                        infoPerLine.innerHTML = infoText;
                         airinfo.appendChild(infoPerLine);
                     }
                 }
@@ -109,18 +112,6 @@ function showAirboxInfo(sel) {
             return;
         }
     }).fail(function(jqXhr, text, et) {});
-}
-
-function pm25toStr(pm25) {
-    if (pm25 < 36) {
-        return '低';
-    } else if (pm25 >= 36 && pm25 < 54) {
-        return '中';
-    } else if (pm25 >= 54 && pm25 < 71) {
-        return '高';
-    } else {
-        return '非常高';
-    }
 }
 
 function checkIsSubscribed(sel, airinfoblock) {
