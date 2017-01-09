@@ -237,14 +237,18 @@ class AirboxPusher
      */
     private function pm25toStr($pm25)
     {
-        if ($pm25 < 36) {
-            return '低';
-        } else if ($pm25 >= 36 && $pm25 < 54) {
-            return '中';
-        } else if ($pm25 >= 54 && $pm25 < 71) {
-            return '高';
+        if ($pm25 < 15.4) {
+            return '良好';
+        } else if ($pm25 >= 15.5 && $pm25 < 35.4) {
+            return '普通';
+        } else if ($pm25 >= 35.5 && $pm25 < 54.4) {
+            return '對敏感族群不健康';
+        } else if ($pm25 >= 54.5 && $pm25 < 150.4) {
+            return '對所有族群不健康';
+        } else if ($pm25 >= 150.5 && $pm25 < 250.4) {
+            return '非常不健康';
         } else {
-            return '非常高';
+            return '危害';
         }
     }
     /**
