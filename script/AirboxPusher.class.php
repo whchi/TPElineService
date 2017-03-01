@@ -27,6 +27,10 @@ class AirboxPusher
      */
     public function getAirboxDataToPush()
     {
+        $timeToPassAlert = false;
+        if(strpos(date('Hi', $this->currentTimestamp), '00') > -1 || strpos(date('Hi', $this->currentTimestamp), '30' > -1)){
+            $timeToPassAlert = true;
+        }
         $jsonData = $this->airboxData = $this->alertData = [];
         $query = "SELECT * FROM `dataset_to_push` WHERE id = 'airbox'";
         $this->dbObj->prepareQuery($query);
@@ -54,7 +58,7 @@ class AirboxPusher
                 }
             }
         }
-        if (!empty($this->alertData['result'])) {
+        if (!empty($this->alertData['result']) && !$timeToPassAlert) {
             $this->origData = $this->alertData;
             $this->origData['alert'] = true;
         } else {
