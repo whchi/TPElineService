@@ -28,9 +28,9 @@
 	php需安裝php-xml, php-pdo, php-mbstring
 3.	功能項目
 
- 3-1.	擷取:執行抓取[NCDR](https://alerts.ncdr.nat.gov.tw/RSS.aspx)**(無啟用)**以及[空氣盒子](http://data.taipei/opendata/datalist/datasetMeta?oid=4ba06157-3854-4111-9383-3b8a188c962a)的資料
+	3-1.	擷取:執行抓取[NCDR](https://alerts.ncdr.nat.gov.tw/RSS.aspx) **(無啟用)** 以及[空氣盒子](http://data.taipei/opendata/datalist/datasetMeta?oid=4ba06157-3854-4111-9383-3b8a188c962a)的資料
  
-	3-2.	推播:推播[NCDR](https://alerts.ncdr.nat.gov.tw/RSS.aspx)**(需至NCDR平台申請HTTP推播)**以及[空氣盒子](http://data.taipei/opendata/datalist/datasetMeta?oid=4ba06157-3854-4111-9383-3b8a188c962a)的資訊
+	3-2.	推播:推播[NCDR](https://alerts.ncdr.nat.gov.tw/RSS.aspx) **(需至NCDR平台申請HTTP推播)** 以及[空氣盒子](http://data.taipei/opendata/datalist/datasetMeta?oid=4ba06157-3854-4111-9383-3b8a188c962a)的資訊
  
 	3-3.	訂閱:提供 UI 給使用者訂閱推播服務
  
