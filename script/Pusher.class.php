@@ -46,6 +46,7 @@ abstract class Pusher
      */
     protected function pushNCDRData($sendto, $areaCode)
     {
+        $sendto = array_unique($sendto);
         $query = "SELECT `dtp`.`info_to_show`
                   FROM `dataset_to_push` AS `dtp`
                   INNER JOIN `subscription_container` AS `sc` ON `sc`.`dataset_id` = `dtp`.`id`
