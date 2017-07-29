@@ -13,7 +13,7 @@ function pushNCDRFloodData()
     $data = $obj->getDataToPush();
     $pushMemberList = $obj->getPushableMemberList();
     $detail = [];
-    if ($data && !empty($pushMemberList)) {
+    if ($data && $pushMemberList) {
         foreach ($pushMemberList as $k => $memberInfo) {
             $detail[$k]['mid'] = $memberInfo['mid'];
             $detail[$k]['detail'] = json_decode($memberInfo['detail'], true);
@@ -38,7 +38,7 @@ function pushNCDRWSCData()
     $data = $obj->getDataToPush();
     $pushMemberList = $obj->getPushableMemberList();
 
-    if ($data && !empty($pushMemberList)) {
+    if ($data && $pushMemberList) {
         $memberLen = count($pushMemberList);
         for ($i = 0; $i < $memberLen; $i++) {
             $sendToList[] = $pushMemberList[$i]['mid'];
@@ -54,7 +54,7 @@ function pushNCDRParkingData()
     $obj = new NCDRParkingPusher;
     $data = $obj->getDataToPush();
     $pushMemberList = $obj->getPushableMemberList();
-    if ($data && !empty($pushMemberList)) {
+    if ($data && $pushMemberList) {
         $memberLen = count($pushMemberList);
         for ($i = 0; $i < $memberLen; $i++) {
             $sendToList[] = $pushMemberList[$i]['mid'];
@@ -70,7 +70,7 @@ function pushNCDRWatergateData()
     $obj = new NCDRWatergatePusher;
     $data = $obj->getDataToPush();
     $pushMemberList = $obj->getPushableMemberList();
-    if ($data && !empty($pushMemberList)) {
+    if ($data && $pushMemberList) {
         $memberLen = count($pushMemberList);
         for ($i = 0; $i < $memberLen; $i++) {
             $sendToList[] = $pushMemberList[$i]['mid'];
