@@ -93,7 +93,7 @@ abstract class Pusher
      */
     public function getDataToPush()
     {
-        // data updated in past 1 hour
+        // data updated in past 1 minute
         $query = "SELECT * FROM `dataset_to_push` WHERE id = '" . $this->datasetId . "' AND (" . $this->currentTimestamp . " - UNIX_TIMESTAMP(`changed_at`)) <= 60 ;";
         $this->dbObj->prepareQuery($query);
         $this->dataToPush = $this->dbObj->getQuery();
