@@ -9,7 +9,7 @@ class AirboxPusher
     /**
      * @var mixed
      */
-    private $alertData, $airboxData, $dataToPush, $currentTimestamp;
+    private $alertData, $airboxData, $dataToPush, $currentTimestamp,$lineToken;
 
     /**
      * @var mixed
@@ -20,8 +20,17 @@ class AirboxPusher
     {
         $this->currentTimestamp = time();
         $this->dbObj = new PdoDatabase(DB_NAME);
+        $this->lineToken = $this->getLineToken();
     }
-
+    /**
+     * use local query to avoid network problem
+     */
+    private function getLineToken() {
+        $sql = 'SELECT access_token FROM `line_service_token`';
+        $this->dbObj->prepareQuery($sql);
+        $rst = $this->dbObj->getQuery();
+        return $rst[0]['access_token'];
+    }
     /**
      * @return mixed
      */
@@ -78,7 +87,6 @@ class AirboxPusher
     public function getAirboxPushableMemberList()
     {
         $currentTime = date('Hi', $this->currentTimestamp);
-        $currentTime = '1230';
         $this->pushableMemberList = $rst = $detail = [];
         $query = "SELECT * FROM `subscription_container`
                   WHERE `is_pushed` = 0
@@ -226,7 +234,8 @@ class AirboxPusher
                         [
                             'toChannel' => $lineConst['toChannel']['Message'],
                             'eventType' => $lineConst['eventType']['OutgoingMessage'],
-                        ]
+                        ],
+                        $this->lineToken
                     );
                     $rst[$j]['midList'] = $midDetail[$i];
                     $j++;

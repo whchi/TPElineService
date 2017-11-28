@@ -14,6 +14,7 @@ abstract class Pusher
      * @var mixed
      */
     public $dataToPush, $pushableMemberList;
+    private $lineToken;
     /**
      * @param $msg
      */
@@ -23,6 +24,16 @@ abstract class Pusher
     {
         $this->currentTimestamp = time();
         $this->dbObj = new PdoDatabase(DB_NAME);
+        $this->lineToken = $this->getLineToken();
+    }
+    /**
+     * use local query to avoid network problem
+     */
+    private function getLineToken() {
+        $sql = 'SELECT access_token FROM `line_service_token`';
+        $this->dbObj->prepareQuery($sql);
+        $rst = $this->dbObj->getQuery();
+        return $rst[0]['access_token'];
     }
     /**
      * push data with detail config
@@ -193,7 +204,8 @@ class NCDRFloodPusher extends Pusher
                 [
                     'toChannel' => $lineConst['toChannel']['Message'],
                     'eventType' => $lineConst['eventType']['OutgoingMessage'],
-                ]
+                ],
+                $this->lineToken
             );
         }
         return $rst;
@@ -233,7 +245,8 @@ class NCDRWSCPusher extends Pusher
                 [
                     'toChannel' => $lineConst['toChannel']['Message'],
                     'eventType' => $lineConst['eventType']['OutgoingMessage'],
-                ]
+                ],
+                $this->lineToken
             );
         }
         return $rst;
@@ -285,7 +298,8 @@ class NCDRParkingPusher extends Pusher
                 [
                     'toChannel' => $lineConst['toChannel']['Message'],
                     'eventType' => $lineConst['eventType']['OutgoingMessage'],
-                ]
+                ],
+                $this->lineToken
             );
         }
         return $rst;
@@ -326,7 +340,8 @@ class NCDRWatergatePusher extends Pusher
                 [
                     'toChannel' => $lineConst['toChannel']['Message'],
                     'eventType' => $lineConst['eventType']['OutgoingMessage'],
-                ]
+                ],
+                $this->lineToken
             );
         }
         return $rst;

@@ -35,7 +35,7 @@ function requestFail($httpCode)
  * @param array $postData 傳送資料型態
  * @return mixed
  */
-function messagesFromBot($uri, array $uids, array $messageFormat, array $messageType)
+function messagesFromBot($uri, array $uids, array $messageFormat, array $messageType, $token)
 {
     $postData = [
         'to' => $uids,
@@ -47,7 +47,7 @@ function messagesFromBot($uri, array $uids, array $messageFormat, array $message
     // 機器人推播基本設定
     $headers = [
         'Content-Type: application/json;charset=UTF-8',
-        'X-Line-ChannelToken:' . X_LINE_CHANNELTOKEN,
+        'X-Line-ChannelToken:' . $token,
     ];
 
     $curl = curl_init($uri);
@@ -59,7 +59,7 @@ function messagesFromBot($uri, array $uids, array $messageFormat, array $message
         CURLOPT_SSL_VERIFYHOST => false,
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_AUTOREFERER => true,
-        CURLOPT_TIMEOUT => 5,
+        CURLOPT_TIMEOUT => 10,
         CURLOPT_HEADER => false,
         CURLOPT_POST => true,
         CURLOPT_HTTPHEADER => $headers,
@@ -71,9 +71,10 @@ function messagesFromBot($uri, array $uids, array $messageFormat, array $message
     $rst = curl_exec($curl);
     $info = curl_getinfo($curl);
     $error = curl_error($curl);
-    // get header and content apart
+
     curl_close($curl);
-    if (!empty($error) || strpos($header, ' 200 ') < 0) {
+
+    if (!empty($error)) {
         return $error;
     }
 
