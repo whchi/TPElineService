@@ -23,7 +23,7 @@ try {
     foreach ($lineBody['result'] as $row) {
         if ($row['eventType'] === $lineConst['eventType']['Operation'] &&
             $row['content']['opType'] === $lineConst['operationType']['Friend']) {
-            saveMemberInfoToDB($row['content']['from']);
+            // saveMemberInfoToDB($row['content']['from']);
             continue;
             // add as friend
         } elseif ($row['eventType'] == $lineConst['eventType']['Message'] &&
@@ -42,7 +42,7 @@ try {
                 ]
             );
             // }
-            saveMemberInfoToDB($row['content']['from']);
+            // saveMemberInfoToDB($row['content']['from']);
             // 傳入訊息不包含taipei則略過
             continue;
         }
