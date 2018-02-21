@@ -3,7 +3,8 @@ require_once __DIR__ . '/../config/Global.config.php';
 require_once ROOT_PATH . '/common/Debug.trait.php';
 require_once ROOT_PATH . '/script/Parser.class.php';
 require_once ROOT_PATH . '/config/Script.config.php';
-
+parseAirboxDData();
+exit;
 $toExecute = $argv[1];
 if (strpos($toExecute, 'NCDRFlood') > -1) {
     parseNCDRDFloodData();
@@ -42,6 +43,7 @@ function parseNCDRDWorkSchoolCloseData()
     global $taiwanGeocode;
     $dataToDB = [];
     $obj = new NCDRDWSCParser;
+    // parse only tpe city
     $xmlData = $obj->getRawData(ROOT_PATH . DISPLAY_DATASET_PATH, 'ncdr_workschoolclose_63', 'xml');
     if ($xmlData) {
         $dataToDB['result'] = $obj->parseData();

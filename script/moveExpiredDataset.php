@@ -15,7 +15,7 @@ foreach ($pushDataFolder as $k => $v) {
     }
 }
 $dataToMove = implode(' ', $dataToMove);
-exec('/bin/mv ' . $dataToMove . ' ' . ROOT_PATH . EXPIRED_DATASET_PATH);
+exec('/bin/mv ' . $dataToMove . ' ' . ROOT_PATH . EXPIRED_DATASET_PATH . ' >> ' . ROOT_PATH . '/logs/mvExpiredData.log 2>&1');
 
 function itsTimetomove($filetime)
 {

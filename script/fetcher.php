@@ -3,7 +3,13 @@ require_once __DIR__ . '/../config/Global.config.php';
 require_once ROOT_PATH . '/common/Debug.trait.php';
 require_once ROOT_PATH . '/config/Script.config.php';
 require_once ROOT_PATH . '/script/Fetcher.class.php';
-
+// fetchNCDRWorkSchoolCloseData();
+// fetchNCDRParkingData();
+// fetchNCDRWaterGateData();
+// fetchEOCDisasterData();
+// fetchNCDRFloodData();
+fetchAirboxData();
+exit;
 global $fetcherInterval;
 $toExecute = [];
 $currentTime = (int) date('i', time());
@@ -36,7 +42,7 @@ foreach ($toExecute as $item) {
             fetchEOCDisasterData();
             break;
         case 'airbox':
-            // 空氣盒子
+            // 空氣品質
             fetchAirboxData();
             break;
         default:

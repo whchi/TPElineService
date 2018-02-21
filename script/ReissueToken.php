@@ -1,31 +1,43 @@
 <?php
+######################
+#run this every month's 1st day
+# 0 0 1 * *
+#
+######################
 require_once __DIR__ . '/../common/DbAccess.class.php';
 $dbObj = new PdoDatabase('linebot');
+// 取得有效且最早新增的token
+$query = 'SELECT * FROM `line_service_token` WHERE (UNIX_TIMESTAMP(`expired`) - (UNIX_TIMESTAMP(NOW()))) > 0';
+$dbObj->prepareQuery($query);
+$tokenIsExpired = $dbObj->getQuery();
+
+if (empty($tokenIsExpired)) {
 // get token to reissue
-$query = 'SELECT * FROM `line_service_token`';
-$dbObj->prepareQuery($query);
-$tokenToReissue = $dbObj->getQuery();
+    $query = 'SELECT * FROM `line_service_token`';
+    $dbObj->prepareQuery($query);
+    $tokenToReissue = $dbObj->getQuery();
 
-$reissuingTokenAPI = 'https://api.line.me/v1/oauth/accessToken';
-$header = [
-    'Content-Type: application/x-www-form-urlencoded',
-    'X-Line-ChannelToken: ' . $tokenToReissue[0]['access_token'],
-];
-$newToken = reissuingToken($reissuingTokenAPI, $header, ['refreshToken' => $tokenToReissue[0]['refresh_token']]);
+    $reissuingTokenAPI = 'https://api.line.me/v1/oauth/accessToken';
+    $header = [
+        'Content-Type: application/x-www-form-urlencoded',
+        'X-Line-ChannelToken: ' . $tokenToReissue[0]['access_token'],
+    ];
+    $newToken = reissuingToken($reissuingTokenAPI, $header, ['refreshToken' => $tokenToReissue[0]['refresh_token']]);
 
-$toDB = json_decode($newToken, true);
+    $toDB = json_decode($newToken, true);
 
-$query = 'UPDATE `line_service_token` SET `access_token` = :accessToken, `refresh_token` = :refreshToken, `created_at` = NOW(), `expired` = :expire;';
+    $query = 'UPDATE `line_service_token` SET `access_token` = :accessToken, `refresh_token` = :refreshToken, `created_at` = NOW(), `expired` = :expire;';
 
-$dbObj->prepareQuery($query);
-$dbObj->bindMultiParams([
-    ':accessToken' => $toDB['accessToken'],
-    ':refreshToken' => $toDB['refreshToken'],
-    ':expire' => date('Y-m-d H:i:s', substr($toDB['expire'], 0, -3)),
-]);
+    $dbObj->prepareQuery($query);
+    $dbObj->bindMultiParams([
+        ':accessToken' => $toDB['accessToken'],
+        ':refreshToken' => $toDB['refreshToken'],
+        ':expire' => date('Y-m-d H:i:s', substr($toDB['expire'], 0, -3)),
+    ]);
 
-$dbObj->doQuery();
-$dbObj->closeDbConn();
+    $dbObj->doQuery();
+    $dbObj->closeDbConn();
+}
 function reissuingToken($uri, $header, $data)
 {
     $curl = curl_init();

@@ -29,12 +29,14 @@ abstract class Pusher
     /**
      * use local query to avoid network problem
      */
-    private function getLineToken() {
+    private function getLineToken()
+    {
         $sql = 'SELECT access_token FROM `line_service_token`';
         $this->dbObj->prepareQuery($sql);
         $rst = $this->dbObj->getQuery();
         return $rst[0]['access_token'];
     }
+
     /**
      * push data with detail config
      * @param $detail
@@ -104,7 +106,7 @@ abstract class Pusher
      */
     public function getDataToPush()
     {
-        // data updated in past 1 minute
+        // data updated in past 1 min
         $query = "SELECT * FROM `dataset_to_push` WHERE id = '" . $this->datasetId . "' AND (" . $this->currentTimestamp . " - UNIX_TIMESTAMP(`changed_at`)) <= 60 ;";
         $this->dbObj->prepareQuery($query);
         $this->dataToPush = $this->dbObj->getQuery();
@@ -229,8 +231,18 @@ class NCDRWSCPusher extends Pusher
         $msg = json_decode($msg[0]['info_to_show'], true);
         $message = '';
         $message .= '停班停課資訊:';
+        // 全區域寫法
+        // foreach ($msg as $item) {
+        //     $message .= PHP_EOL . '【' . $item['areaName'] . '】 : ' . $item['message'];
+        // }
+        // 台北市寫法
+        // $msg = ['result' => [
+        //     'areaName' => '臺北市',
+        //     'message' => '[停班停課通知]臺北市:9/17已達停止上班及上課標準。行政院人事行政總處。如有任何問題請撥1999(市內直撥)。',
+        // ]];
         $message .= PHP_EOL . $msg['result']['message'];
         $message .= PHP_EOL . '(此為自動推播訊息)';
+
         $rst = [];
         $len = count($this->sendTo);
         for ($i = 0; $i < $len; $i++) {
@@ -323,8 +335,19 @@ class NCDRWatergatePusher extends Pusher
         global $lineApi, $lineConst, $lineBotConfig;
         $msg = json_decode($msg[0]['info_to_show'], true);
         $message = '';
+        // switch ($msg['result']['msgType']) {
+        //     case 'Cancel':
+        //         $message = '水閘門啟閉資訊:' . PHP_EOL;
+        //         $message .= $msg['result']['description'];
+        //         break;
+        //     default:
         $message = '水閘門啟閉資訊:' . PHP_EOL;
         $message .= $msg['result']['description'];
+        // 原始資料已有網址列
+        // $message .= '影響範圍請參考:(請使用行動裝置進入此網址)' . PHP_EOL;
+        // $message .= 'line://ch/' . $lineBotConfig['channelId'] . '/?page=wg';
+        // break;
+        // }
         $message .= PHP_EOL . '(此為自動推播訊息)';
         $rst = [];
         $len = count($this->sendTo);

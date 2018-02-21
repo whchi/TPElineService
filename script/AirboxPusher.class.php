@@ -9,7 +9,7 @@ class AirboxPusher
     /**
      * @var mixed
      */
-    private $alertData, $airboxData, $dataToPush, $currentTimestamp,$lineToken;
+    private $alertData, $airboxData, $dataToPush, $currentTimestamp, $lineToken;
 
     /**
      * @var mixed
@@ -25,7 +25,8 @@ class AirboxPusher
     /**
      * use local query to avoid network problem
      */
-    private function getLineToken() {
+    private function getLineToken()
+    {
         $sql = 'SELECT access_token FROM `line_service_token`';
         $this->dbObj->prepareQuery($sql);
         $rst = $this->dbObj->getQuery();
@@ -37,7 +38,7 @@ class AirboxPusher
     public function getAirboxDataToPush()
     {
         $timeToPassAlert = false;
-        if(strpos(date('Hi', $this->currentTimestamp), '00') > -1 || strpos(date('Hi', $this->currentTimestamp), '30' > -1)){
+        if (strpos(date('Hi', $this->currentTimestamp), '00') > -1 || strpos(date('Hi', $this->currentTimestamp), '30' > -1)) {
             $timeToPassAlert = true;
         }
         $jsonData = $this->airboxData = $this->alertData = [];
@@ -87,6 +88,7 @@ class AirboxPusher
     public function getAirboxPushableMemberList()
     {
         $currentTime = date('Hi', $this->currentTimestamp);
+
         $this->pushableMemberList = $rst = $detail = [];
         $query = "SELECT * FROM `subscription_container`
                   WHERE `is_pushed` = 0
@@ -208,12 +210,12 @@ class AirboxPusher
         $j = 0;
         foreach ($midInfo as $area => $midDetail) {
             for ($i = 0; $i < $midDetail['midChunk']; $i++) {
-                $message = '空氣盒子資訊:' . PHP_EOL;
+                $message = '空氣品質資訊:' . PHP_EOL;
                 foreach ($msg['result'] as $key => $info) {
                     if ($area === $key && isset($info[0]['deviceDist'])) {
-                        $message .= '【' . $info[0]['deviceDist'] . '】' . PHP_EOL . '各監測點空氣盒子情形如下:';
+                        $message .= '【' . $info[0]['deviceDist'] . '】' . PHP_EOL . '各監測點空氣品質情形如下:';
                         foreach ($info as $airInfo) {
-                            if ($airInfo['pm25'] < 54.4) {
+                            if ($airInfo['pm25'] < 54.5) {
                                 $message .= PHP_EOL . $airInfo['deviceName'] . 'PM2.5濃度: ' . $airInfo['pm25'] . '(' . $this->pm25toStr($airInfo['pm25']) . ')';
                             } else {
                                 $message .= PHP_EOL . $airInfo['deviceName'] . 'PM2.5濃度: ' . $airInfo['pm25'] . '(已達紅害等級，建議民眾不要於該區域逗留)';
